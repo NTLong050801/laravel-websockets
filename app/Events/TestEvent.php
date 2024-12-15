@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TestEvent
+class TestEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -32,5 +32,10 @@ class TestEvent
         return [
             new PrivateChannel('test-channel'),
         ];
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'TestEvent';
     }
 }
