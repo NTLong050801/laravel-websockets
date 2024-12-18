@@ -23,12 +23,26 @@ return [
      */
     'apps' => [
         [
-            'id' => 'example_app',
-            'name' => 'Example WebSocket App',
-            'key' => 'example_key',
-            'secret' => 'example_secret',
-            'enable_client_messages' => true,
+            'id' => env('PUSHER_APP_ID'),
+            'name' => env('APP_NAME'),
+
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'path' => env('PUSHER_APP_PATH'),
+            'capacity' => null,
+            'enable_client_messages' => false,
             'enable_statistics' => true,
+            'allowed_origins' => [
+                // env('LARAVEL_WEBSOCKETS_DOMAIN'),
+            ],
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'useTLS' => false,
+                'encrypted' => true,
+                'port' => 6001,
+                'scheme' => 'http',
+                'host' => env('PUSHER_HOST'),
+            ]
         ],
     ],
 
